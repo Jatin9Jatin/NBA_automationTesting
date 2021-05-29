@@ -24,6 +24,7 @@ public class PageFactory_main {
             if(btns.get(i).getText().contains("I Accept"))
             {
                 btns.get(i).click();
+                break;
             }
         }
     }
@@ -35,6 +36,7 @@ public class PageFactory_main {
             if(btns.get(i).getAttribute("title").contains("Close"))
             {
                 btns.get(i).click();
+                break;
             }
         }
     }
@@ -46,7 +48,64 @@ public class PageFactory_main {
         NBA_siteIcon.click();
     }
 
+    @FindBy(how = How.TAG_NAME, using = "a")
+    List<WebElement> links;
 
+    @FindBy(how = How.TAG_NAME, using = "div")
+    List<WebElement> div;
 
+    public void clk_AllStories(){
+        for (int i=0;i< links.size();i++)
+        {
+            if(links.get(i).getText().contains("All Stories"))
+            {
+                links.get(i).click();
+                break;
+            }
+        }
+
+    }
+
+    public void clk_1stStory(){
+        for (int i=0;i<links.size();i++)
+        {
+            if(links.get(i).getAttribute("class").contains("card__link"))
+            {
+                links.get(i).click();
+                break;
+
+            }
+        }
+    }
+
+    public void clk_headToHead(){
+        for (int i=0;i<div.size();i++){
+            if(div.get(i).getAttribute("class").contains("nbap-nav__head-to-head-logo"))
+            {
+               div.get(i).click();
+               break;
+            }
+        }
+    }
+
+    public void clk_NBAstore(){
+        for (int i=0;i<div.size();i++){
+            if(div.get(i).getAttribute("class").contains("nbap-nav__store-logo"))
+            {
+                div.get(i).click();
+                break;
+            }
+        }
+    }
+
+    public void clk_leaguePass(){
+        for (int i=0;i<div.size();i++){
+            if(div.get(i).getAttribute("class").contains("nbap-nav__leaguepass-logo"))
+            {
+                div.get(i).click();
+                break;
+            }
+        }
+    }
 
 }

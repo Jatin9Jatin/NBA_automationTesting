@@ -9,9 +9,26 @@ Feature: MyFeature
 
   Scenario: T2 ()
     Given launching NBA site
-    When lauching first story in all stories
+    And cookies accepted
+    And close newsletter
+    When launching first story in all stories
     Then finish
 
-    #lauching head to head
-    #lauching league pass
-    #lauching nba store
+  Scenario: T3 launching head to head
+
+  Given Getting on homepage
+  When opening head to head
+  Then finish
+
+  Scenario: T4 opening nba store
+
+    Given Getting on homepage
+    When opening nba store
+    Then finish
+
+  Scenario: T5 launching league pass
+
+    Given Getting on homepage
+    When launching league pass
+    Then finish
+
