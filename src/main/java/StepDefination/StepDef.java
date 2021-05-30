@@ -3,6 +3,7 @@ package StepDefination;
 
 import Glue.Hooks;
 import PageFactory.PageFactory_main;
+import Utility.WaitTime;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -26,6 +27,7 @@ public class StepDef {
     public PageFactory_main home;
     public RemoteWebDriver driver;
     Hooks hook = new Hooks();
+    WaitTime wait = new WaitTime();
 
     @Given("launching NBA site")
     public void launching_NBA_site() {
@@ -42,14 +44,14 @@ public class StepDef {
     }
 
     @And("close newsletter")
-    public void closeNewsletter() throws InterruptedException {
-        Thread.sleep(500);
+    public void closeNewsletter() {
+        wait.ExecuteClickable(driver, home.ele_newsletterGetStarted(driver));
         home.closeNewsletter();
     }
 
     @When("NBA top-left icon clicked")
-    public void nba_top_left_icon_clicked() throws InterruptedException {
-        Thread.sleep(2000);
+    public void nba_top_left_icon_clicked()  {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.clkNba_siteIcon();
         Assert.assertEquals(driver.getCurrentUrl(),NBAcaURL);
 
@@ -58,36 +60,37 @@ public class StepDef {
     @Then("^finish$")
     public void finish() {
         System.out.println("Test Passed, Done");
+        driver.quit();
     }
 
     //T2
 
     @When("launching first story in all stories")
-    public void launchingFirstStoryInAllStories() throws InterruptedException {
-        Thread.sleep(1000);
+    public void launchingFirstStoryInAllStories()  {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.clk_AllStories();
-        Thread.sleep(1000);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.clk_1stStory();
     }
 
     //T3
 
     @Given("^Getting on homepage$")
-    public void gettingOnHomepage() throws InterruptedException {
+    public void gettingOnHomepage() {
         driver = hook.Brower();
         home = new PageFactory_main(driver);
         driver.get(NBAsite);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.acceptCookies();
-        Thread.sleep(500);
+        wait.ExecuteClickable(driver, home.ele_newsletterGetStarted(driver));
         home.closeNewsletter();
     }
 
     @When("opening head to head")
-    public void openingHeadToHead() throws InterruptedException {
-        Thread.sleep(2000);
+    public void openingHeadToHead() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.clk_headToHead();
-        Thread.sleep(2000);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         ArrayList<String> tab2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tab2.get(0));
     }
@@ -95,8 +98,8 @@ public class StepDef {
     //T4
 
     @When("opening nba store")
-    public void openingNbaStore() throws InterruptedException {
-        Thread.sleep(2000);
+    public void openingNbaStore() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.clk_NBAstore();
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(0));
@@ -105,22 +108,22 @@ public class StepDef {
     //T5
 
     @When("launching league pass")
-    public void launchingLeaguePass() throws InterruptedException {
-        Thread.sleep(2000);
+    public void launchingLeaguePass() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.clk_leaguePass();
     }
 
     //T6
 
     @When("Changing language to french")
-    public void changingLanguageToFrench() throws InterruptedException {
-        Thread.sleep(1000);
+    public void changingLanguageToFrench() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.changeLangFrench();
     }
 
     @And("getting back to previous page")
-    public void gettingBackToPreviousPage() throws InterruptedException {
-        Thread.sleep(3000);
+    public void gettingBackToPreviousPage() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         driver.navigate().back();
         driver.navigate().refresh();
     }
@@ -145,10 +148,10 @@ public class StepDef {
     //T8
 
     @When("^Choose (.*?)$")
-    public void chooseCountry(String country) throws InterruptedException {
+    public void chooseCountry(String country) {
         Actions builder = new Actions(driver);
         builder.moveToElement(home.ele_inTextLink("Global")).build().perform();
-        Thread.sleep(500);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.clik_HPdropdownLinks(country);
     }
 

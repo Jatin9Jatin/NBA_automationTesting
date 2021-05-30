@@ -70,6 +70,5 @@ Feature: MyFeature
 # comments
   # stats,players,standing,kids
 
-  # learn waits
   # api testing
 

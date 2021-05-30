@@ -44,6 +44,16 @@ public class PageFactory_main {
         }
     }
 
+    @FindBy (how=How.TAG_NAME, using ="input")
+    List<WebElement> inputs;
+
+    public WebElement ele_newsletterGetStarted(RemoteWebDriver driver){
+
+        WebElement x;
+        x = driver.findElementByName("jupiter-email");
+        return x;
+    }
+
     @FindBy( how = How.CLASS_NAME, using="nbap-nav__svg")
     WebElement NBA_siteIcon;
 
