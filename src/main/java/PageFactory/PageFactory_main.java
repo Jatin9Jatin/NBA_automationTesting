@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-import java.sql.Driver;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PageFactory_main {
@@ -29,13 +29,16 @@ public class PageFactory_main {
         }
     }
 
+    @FindBy(how = How.TAG_NAME,using = "path")
+    List<WebElement> paths;
+
     public void closeNewsletter()
     {
-        for (int i=0;i< btns.size();i++)
+        for (int i=0;i< paths.size();i++)
         {
-            if(btns.get(i).getAttribute("title").contains("Close"))
+            if(paths.get(i).getAttribute("d").contains("M231.6"))
             {
-                btns.get(i).click();
+                paths.get(i).click();
                 break;
             }
         }
@@ -107,5 +110,54 @@ public class PageFactory_main {
             }
         }
     }
+
+    public void changeLangFrench(){
+        for (int i=0;i< links.size();i++){
+            if(links.get(i).getText().contains("NBA en français"))
+            {
+                links.get(i).click();
+                break;
+            }
+        }
+    }
+
+    public WebElement ele_inTextLink(String inText){
+        for (int i=0;i< links.size();i++)
+        {
+            if(links.get(i).getText().contains(inText))
+            {
+                return links.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void clik_HPdropdownLinks(String option){
+        for (int i=0;i< links.size();i++){
+            if(links.get(i).getAttribute("class").contains("nbap-nav__dropdown-link"))
+            {
+                if(links.get(i).getAttribute("title").contains(option))
+                {
+                    links.get(i).click();
+                    break;
+                }
+
+            }
+        }
+    }
+
+    public void clk_Teams(){
+        List<WebElement> Teams = new ArrayList<>();
+        for (int i=0;i<links.size();i++)
+        {
+            if(links.get(i).getText().contains("Teams"))
+            {
+                Teams.add(links.get(i));
+            }
+        }
+
+        Teams.get(1).click();
+    }
+
 
 }
