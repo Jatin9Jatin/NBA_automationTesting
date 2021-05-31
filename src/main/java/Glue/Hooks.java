@@ -9,6 +9,7 @@ public class Hooks {
 
     public RemoteWebDriver Brower(){
         DesiredCapabilities desire1 = new DesiredCapabilities();
+        desire1.setCapability("headless", true);
 
 
         System.setProperty("webdriver.chrome.driver", "Driver/chromedriver.exe");
