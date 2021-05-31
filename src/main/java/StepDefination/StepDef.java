@@ -11,6 +11,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -61,6 +62,11 @@ public class StepDef {
     public void finish() {
         System.out.println("Test Passed, Done");
         driver.quit();
+    }
+
+    @Then("ongoing test")
+    public void ongoingTest() {
+        System.out.println("Congrats! Test passed.");
     }
 
     //T2
@@ -163,5 +169,63 @@ public class StepDef {
         home.clk_Teams();
     }
 
+    //T10
 
+    @When("Open stats menu from homepage")
+    public void openStatsMenuFromHomepage() {
+        WebElement element =  home.ele_inTextLink("Stats");
+        element.click();
+    }
+
+    //T11
+
+    @When("clicking on player from hm")
+    public void clickingOnPlayerFromHm() {
+        WebElement element =  home.ele_inTextLink("Players");
+        element.click();
+    }
+
+    //T12
+
+    @When("Open standing from HM")
+    public void openStandingFromHM() {
+        WebElement element =  home.ele_inTextLink("Standings");
+        element.click();
+    }
+
+    //T13
+
+    @When("kids clicked from HP")
+    public void kidsClickedFromHP() {
+        WebElement element =  home.ele_inTextLink("Kids!");
+        element.click();
+    }
+
+    //T14
+
+    @When("clicking on more news")
+    public void clickingOnMoreNews() {
+        WebElement element =  home.ele_inTextLink("More News");
+        element.click();
+    }
+
+    @And("validating all stories tab is highlighted")
+    public void validatingAllStoriesTabIsHighlighted() {
+        WebElement element =  home.ele_inTextLink("All Stories");
+        Assert.assertEquals(element.getCssValue("border-bottom-color"), CssHL_menu);
+    }
+
+    //T15
+
+    @When("clicking on more videos")
+    public void clickingOnMoreVideos() {
+        WebElement element =  home.ele_inTextLink("More Video");
+        element.click();
+    }
+
+    @And("validating video tab is highlighted")
+    public void validatingVideoTabIsHighlighted() {
+        WebElement element =  home.ele_inTextLink("Videos");
+        Assert.assertEquals(element.getCssValue("border-bottom-color"), CssHL_menu);
+    }
 }

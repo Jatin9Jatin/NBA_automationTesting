@@ -1,6 +1,6 @@
 Feature: MyFeature
 
-  Scenario: T1 Site launch and close (validation & implicitlyWait)
+  Scenario: T1 Site launch and close (validation & Waits)
     Given launching NBA site
     When cookies accepted
     And close newsletter
@@ -65,10 +65,42 @@ Feature: MyFeature
     When open team list
     Then finish
 
+  Scenario: T10 checking out Stats
+    Given Getting on homepage
+    When Open stats menu from homepage
+    Then finish
 
+  Scenario: T11 open list of all Players
+    Given Getting on homepage
+    When clicking on player from hm
+    Then finish
+
+  Scenario: T12 Check the Standing
+    Given Getting on homepage
+    When  Open standing from HM
+    Then finish
+
+  Scenario: T13 launch Kids section
+    Given Getting on homepage
+    When kids clicked from HP
+    Then finish
+
+  Scenario: T14 clicking on more news and validate (CSS validation)
+    Given Getting on homepage
+    When  clicking on more news
+    And validating all stories tab is highlighted
+    Then ongoing test
+
+  Scenario: T15 checking more videos and CCS validation
+    Given Getting on homepage
+    When clicking on more videos
+    And validating video tab is highlighted
+    Then ongoing test
 
 # comments
-  # stats,players,standing,kids
+  # more new more stories validate css
+  # privacy and all
+
 
   # api testing
 
