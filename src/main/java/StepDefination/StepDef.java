@@ -88,8 +88,8 @@ public class StepDef {
         driver.get(NBAsite);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.acceptCookies();
-        wait.ExecuteClickable(driver, home.ele_newsletterGetStarted(driver));
-        home.closeNewsletter();
+        //wait.ExecuteClickable(driver, home.ele_newsletterGetStarted(driver));
+        //home.closeNewsletter();
     }
 
     @When("opening head to head")
@@ -107,8 +107,8 @@ public class StepDef {
     public void openingNbaStore() {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         home.clk_NBAstore();
-        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(0));
+        //ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        //driver.switchTo().window(tabs.get(0));
     }
 
     //T5
@@ -173,40 +173,36 @@ public class StepDef {
 
     @When("Open stats menu from homepage")
     public void openStatsMenuFromHomepage() {
-        WebElement element =  home.ele_inTextLink("Stats");
-        element.click();
+        home.clk_statsMenu();
     }
 
     //T11
 
     @When("clicking on player from hm")
     public void clickingOnPlayerFromHm() {
-        WebElement element =  home.ele_inTextLink("Players");
-        element.click();
+        home.clk_playerMenu();
     }
 
     //T12
 
     @When("Open standing from HM")
     public void openStandingFromHM() {
-        WebElement element =  home.ele_inTextLink("Standings");
-        element.click();
+        home.clk_statndingMenu();
     }
 
     //T13
 
     @When("kids clicked from HP")
     public void kidsClickedFromHP() {
-        WebElement element =  home.ele_inTextLink("Kids!");
-        element.click();
+
+        home.clk_kidsMenu();
     }
 
     //T14
 
     @When("clicking on more news")
     public void clickingOnMoreNews() {
-        WebElement element =  home.ele_inTextLink("More News");
-        element.click();
+        home.clk_moreNews();
     }
 
     @And("validating all stories tab is highlighted")
@@ -219,8 +215,7 @@ public class StepDef {
 
     @When("clicking on more videos")
     public void clickingOnMoreVideos() {
-        WebElement element =  home.ele_inTextLink("More Video");
-        element.click();
+        home.clk_moreVideos();
     }
 
     @And("validating video tab is highlighted")
@@ -228,4 +223,6 @@ public class StepDef {
         WebElement element =  home.ele_inTextLink("Videos");
         Assert.assertEquals(element.getCssValue("border-bottom-color"), CssHL_menu);
     }
+
+
 }

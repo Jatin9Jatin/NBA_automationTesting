@@ -169,5 +169,34 @@ public class PageFactory_main {
         Teams.get(1).click();
     }
 
+    public void clk_statsMenu(){
+        WebElement element =  ele_inTextLink("Stats");
+        element.click();
+    }
+
+    public void clk_playerMenu(){
+        WebElement element =  ele_inTextLink("Players");
+        element.click();
+    }
+
+    public void clk_statndingMenu(){
+        WebElement element =  ele_inTextLink("Standings");
+        element.click();
+    }
+
+    public void clk_kidsMenu(){
+        WebElement element =  ele_inTextLink("Kids!");
+        element.click();
+    }
+
+    public void clk_moreNews(){
+        WebElement element =  ele_inTextLink("More News");
+        element.click();
+    }
+
+    public void clk_moreVideos(){
+        WebElement element =  ele_inTextLink("More Video");
+        element.click();
+    }
 
 }

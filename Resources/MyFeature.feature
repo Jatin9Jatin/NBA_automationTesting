@@ -1,4 +1,5 @@
 Feature: MyFeature
+  #(Basics and fundamentals)
 
   Scenario: T1 Site launch and close (validation & Waits)
     Given launching NBA site
@@ -44,8 +45,8 @@ Feature: MyFeature
     Examples:
       | team      |
       | Toronto   |
-      #| New York  |
-      #| Boston    |
+      | New York  |
+      | Boston    |
 
   Scenario Outline: T8 Selecting country (Scenario outline + action class)
     Given Getting on homepage
@@ -89,18 +90,15 @@ Feature: MyFeature
     Given Getting on homepage
     When  clicking on more news
     And validating all stories tab is highlighted
-    Then ongoing test
+    Then finish
 
   Scenario: T15 checking more videos and CCS validation
     Given Getting on homepage
     When clicking on more videos
     And validating video tab is highlighted
-    Then ongoing test
+    Then finish
 
 # comments
-  # more new more stories validate css
-  # privacy and all
 
-
-  # api testing
+  # manual api testing
 
