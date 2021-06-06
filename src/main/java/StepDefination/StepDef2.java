@@ -117,7 +117,7 @@ public class StepDef2 {
         store.sk_ShiipingForm("karankumar0078900@gmail.com", "EMAIL");
         store.sk_ShiipingForm("4-3840 av Linton ", "ADDRESS_1");
         store.sk_ShiipingForm("5146065869", "PHONE");
-      //  store.sk_ShiipingForm("H3S1T3", "ZIPCODE");
+       // store.sk_ShiipingForm("H3S1T3", "ZIPCODE");
        // store.sk_ShiipingForm("Montreal", "CITY");
 
         Select province = new Select(store.we_select("state"));

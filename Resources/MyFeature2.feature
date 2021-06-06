@@ -1,6 +1,6 @@
 Feature: MyFeature2
 
-  Scenario: T1 buying T-shirt from store
+  Scenario: T1 buying hat from store
     Given launching on homepage
     And launch nba store
     When Select a hat
