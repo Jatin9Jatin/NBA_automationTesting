@@ -5,6 +5,7 @@ import Glue.Hooks;;
 import Utility.WaitTime;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -39,8 +40,8 @@ public class StepDef2 {
         store.change_tab(driver,2);
     }
 
-    @When("Select a hat")
-    public void selectAHat() {
+    @When("Select a tshirt")
+    public void selectATshirt() {
 
         System.out.println(driver.getCurrentUrl());
         WebElement ele = store.we_link("HATS");
@@ -77,7 +78,67 @@ public class StepDef2 {
         Assert.assertEquals(store.shippingValidation_check("errorCity"), Form_BlankError);
     }
 
+    //t2
 
+    @Given("^launching on nba homepage$")
+    public void launchingOnNbaHomepage2() {
+        driver = hook.Brower();
+        store = new PageFactory2(driver);
+        driver.get(NBAsite);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        store.acceptCookies();
+    }
+
+    @Given("landing on nba store")
+    public void launchOnNbaStore() {
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        store.clk_NBAstore();
+        store.change_tab(driver,2);
+    }
+
+    @When("Select a item from product listing")
+    public void selectAItemFromProductListing() {
+
+        System.out.println(driver.getCurrentUrl());
+        WebElement ele = store.we_link("HATS");
+        wait.ExecuteClickable(driver, ele);
+        store.clk_we(ele);
+        WebElement show_all = store.we_link("View all teams");
+        wait.ExecuteClickable(driver, show_all);
+        store.clk_we(show_all);
+        WebElement team = store.we_link("Toronto Raptors");
+        wait.ExecuteClickable(driver, team);
+        store.clk_we(team);
+        WebElement item = store.listProducts(0);
+        store.clk_we(item);
+    }
+
+    @And("buy the selected item in the cart")
+    public void buyTheSelectedItemInTheCart() {
+
+        driver.navigate().refresh();
+        WebElement add_to_card = store.we_btn("Add");
+        store.clk_we(add_to_card);
+        WebElement apply = store.we_span("Apply");
+        wait.ExcuteVisiblity(driver, apply);
+        WebElement checkout = store.we_span("Checkout");
+        store.clk_we(checkout);
+        WebElement continueCheckout = store.we_span("Continue Checkout");
+        store.clk_we(continueCheckout);
+        Assert.assertEquals(store.shippingValidation_check("errorFirst Name"), Form_BlankError);
+        Assert.assertEquals(store.shippingValidation_check("errorLast Name"), Form_BlankError);
+        Assert.assertEquals(store.shippingValidation_check("errorEmail"), Form_BlankError);
+        Assert.assertEquals(store.shippingValidation_check("errorPhone"), Form_BlankError);
+        Assert.assertEquals(store.shippingValidation_check("errorAddress 1"), Form_BlankError);
+        Assert.assertEquals(store.shippingValidation_check("errorPostal Code"), Form_BlankError);
+        Assert.assertEquals(store.shippingValidation_check("errorCity"), Form_BlankError);
+    }
+
+    @Then("validating and closing the browser")
+    public void validatingAndClosingTheBrowser() {
+        System.out.println("Test Passed, Done");
+        driver.quit();
+    }
 
   //current
 
@@ -125,4 +186,6 @@ public class StepDef2 {
         store.clk_we(continueCheckout);
 
     }
+
+
 }
