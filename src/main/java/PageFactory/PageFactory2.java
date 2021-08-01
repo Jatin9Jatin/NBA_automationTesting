@@ -36,6 +36,21 @@ public class PageFactory2 {
     @FindBy(how = How.TAG_NAME, using = "div")
     List<WebElement> div;
 
+    @FindBy(how = How.TAG_NAME,using = "path")
+    List<WebElement> paths;
+
+    public void closeNewsletter()
+    {
+        for (int i=0;i< paths.size();i++)
+        {
+            if(paths.get(i).getAttribute("d").contains("M231.6"))
+            {
+                paths.get(i).click();
+                break;
+            }
+        }
+    }
+
     public void clk_NBAstore(){
         for (int i=0;i<div.size();i++){
             if(div.get(i).getAttribute("class").contains("nbap-nav__store-logo"))
@@ -158,5 +173,32 @@ public class PageFactory2 {
             }
         }
         return ele;
+    }
+
+    @FindBy(how = How.TAG_NAME, using = "article")
+    List<WebElement> article;
+
+    public WebElement we_article(int num) {
+        WebElement ele = null;
+        for (int i = 0; i < article.size(); i++) {
+            if (i == (num - 1)) {
+                ele = article.get(i);
+                break;
+            }
+        }
+        return ele;
+    }
+
+    public void gameScore_date(String date)
+    {
+        for (int i=0;i<span.size();i++){
+            if (span.get(i).getAttribute("class").contains("ng-binding")){
+                if(span.get(i).getText().contains(date)){
+                    span.get(i+19).click();
+                    break;
+                }
+            }
+        }
+
     }
 }

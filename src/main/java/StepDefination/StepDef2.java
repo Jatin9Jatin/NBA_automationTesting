@@ -76,6 +76,18 @@ public class StepDef2 {
         Assert.assertEquals(store.shippingValidation_check("errorAddress 1"), Form_BlankError);
         Assert.assertEquals(store.shippingValidation_check("errorPostal Code"), Form_BlankError);
         Assert.assertEquals(store.shippingValidation_check("errorCity"), Form_BlankError);
+
+        store.sk_ShiipingForm("Karan", "FIRST_NAME");
+        store.sk_ShiipingForm("Kumar", "LAST_NAME");
+        store.sk_ShiipingForm("karankumar0078900@gmail.com", "EMAIL");
+        store.sk_ShiipingForm("4-3840 av Linton ", "ADDRESS_1");
+        store.sk_ShiipingForm("5146065869", "PHONE");
+        // store.sk_ShiipingForm("H3S1T3", "ZIPCODE");
+        // store.sk_ShiipingForm("Montreal", "CITY");
+
+        Select province = new Select(store.we_select("state"));
+        province.selectByVisibleText("Quebec");
+        store.clk_we(continueCheckout);
     }
 
     //t2
@@ -87,6 +99,7 @@ public class StepDef2 {
         driver.get(NBAsite);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         store.acceptCookies();
+
     }
 
     @Given("landing on nba store")
@@ -151,7 +164,7 @@ public class StepDef2 {
     public void reachingLastCheckpoint() {
         driver = hook.Brower();
         store = new PageFactory2(driver);
-        driver.get("https://www.nbastore.ca/toronto-raptors/mens-new-era-black-toronto-raptors-official-team-color-9fifty-adjustable-snapback-hat/t-14927562+p-5805523872193+z-9-638360131?_ref=p-DLP:m-GRID:i-r0c0:po-0");
+        driver.get("https://www.nbastore.ca/toronto-raptors/mens-new-era-black-toronto-raptors-official-team-color-9fifty-snapback-adjustable-hat/t-92368673+p-030479910273+z-8-995137264?_ref=p-DLP:m-GRID:i-r0c1:po-1");
 
     }
 
@@ -187,5 +200,35 @@ public class StepDef2 {
 
     }
 
+    //T3
 
+    @When("^open story number (.*?) and copying link$")
+    public void openStoryNumberAndCopyingLink(int num) {
+        store.closeNewsletter();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        store.clk_we(store.we_link("All Stories"));
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        store.clk_we(store.we_article(num));
+
+    }
+
+    //T3
+
+    @And("open TV broardcast tab")
+    public void openTVBroardcastTab() {
+        store.closeNewsletter();
+        store.clk_we(store.we_link("Schedule"));
+    }
+
+    @When("^Select team (.*?)$")
+    public void selectTeam(String team) {
+        store.clk_we(store.we_span("Select Team"));
+        store.clk_we(store.we_span(team));
+
+    }
+
+    @And("^Select date (.*?)$")
+    public void selectDate(String date) {
+        store.gameScore_date(date);
+    }
 }

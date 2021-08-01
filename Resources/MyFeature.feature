@@ -98,7 +98,6 @@ Feature: MyFeature
     And validating video tab is highlighted
     Then finish
 
-# comments
+# Comments
 
-  # manual api testing
-
+  # Manual api testing
